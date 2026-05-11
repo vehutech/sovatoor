@@ -304,7 +304,7 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
   <footer>
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Crispy<span>Bits</span></div>
+        <div class="footer-brand">Sova<span>toor</span></div>
         <p class="footer-desc">A research simulation system for online pastry ordering and delivery management. Fresh snacks delivered with care.</p>
       </div>
       <div class="footer-links">
@@ -320,7 +320,7 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
         <ul>
           <li>📍 Lokoja, Kogi State</li>
           <li>📞 +234 800 000 0000</li>
-          <li>📧 hello@crispybits.ng</li>
+          <li>📧 hello@sovatoor.ng</li>
         </ul>
       </div>
     </div>
@@ -330,7 +330,7 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
         Federal University Lokoja &nbsp;|&nbsp; Supervisor: Prof. Yemi Peters<br>
         <em>Design of a Web-Based Pastry Order Processing and Delivery Management System</em>
       </div>
-      <div style="font-size:0.78rem;color:var(--gray-400)">© 2024 CrispyBits. Simulation only.</div>
+      <div style="font-size:0.78rem;color:var(--gray-400)">© 2024 Sovatoor. Simulation only.</div>
     </div>
   </footer>
 </div>
@@ -338,7 +338,7 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
 <!-- AUTH PAGE -->
 <div class="page" id="page-auth" style="background:var(--black);padding:2rem;min-height:calc(100vh - 64px);display:none;align-items:center;justify-content:center">
   <div class="auth-box">
-    <div class="auth-logo">Crispy<span>Bits</span></div>
+    <div class="auth-logo">Sova<span>toor</span></div>
     <div id="authSubtitle" class="auth-sub">Sign in to your account</div>
     <div class="error-msg" id="authError"></div>
     
@@ -354,7 +354,7 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
       </div>
       <button class="auth-btn" onclick="doLogin()">Sign In →</button>
       <div class="auth-toggle">Don't have an account? <a onclick="switchToRegister()">Create one</a></div>
-      <div style="text-align:center;margin-top:0.75rem;font-size:0.78rem;color:var(--gray-400)">Admin: admin@crispybits.ng / admin123</div>
+      <div style="text-align:center;margin-top:0.75rem;font-size:0.78rem;color:var(--gray-400)">Admin: admin@sovatoor.ng / admin123</div>
     </div>
 
     <!-- REGISTER FORM -->
@@ -622,7 +622,7 @@ const PRODUCTS = [
   {id:8,name:"Chicken Burger",emoji:"🍗",desc:"Crispy fried chicken fillet, coleslaw, pickles and a house sauce on a soft bun.",price:2200,category:"Burger",tag:"popular"},
 ];
 
-const ADMIN_CREDS = {email:"admin@crispybits.ng",password:"admin123",name:"Admin",isAdmin:true};
+const ADMIN_CREDS = {email:"admin@sovatoor.ng",password:"admin123",name:"Admin",isAdmin:true};
 
 // ===== STATE =====
 let state = {
@@ -636,25 +636,25 @@ let state = {
 
 // ===== LOCAL STORAGE =====
 function saveData(){
-  localStorage.setItem('crispybits_users', JSON.stringify(getUsers()));
-  localStorage.setItem('crispybits_orders', JSON.stringify(getOrders()));
-  localStorage.setItem('crispybits_session', JSON.stringify(state.user));
+  localStorage.setItem('sovatoor_users', JSON.stringify(getUsers()));
+  localStorage.setItem('sovatoor_orders', JSON.stringify(getOrders()));
+  localStorage.setItem('sovatoor_session', JSON.stringify(state.user));
 }
 function getUsers(){
-  try{return JSON.parse(localStorage.getItem('crispybits_users'))||[];}catch{return[];}
+  try{return JSON.parse(localStorage.getItem('sovatoor_users'))||[];}catch{return[];}
 }
 function getOrders(){
-  try{return JSON.parse(localStorage.getItem('crispybits_orders'))||[];}catch{return[];}
+  try{return JSON.parse(localStorage.getItem('sovatoor_orders'))||[];}catch{return[];}
 }
 function saveOrder(order){
   const orders = getOrders();
   const idx = orders.findIndex(o=>o.id===order.id);
   if(idx>=0) orders[idx]=order; else orders.unshift(order);
-  localStorage.setItem('crispybits_orders', JSON.stringify(orders));
+  localStorage.setItem('sovatoor_orders', JSON.stringify(orders));
 }
 function loadSession(){
   try{
-    const s = JSON.parse(localStorage.getItem('crispybits_session'));
+    const s = JSON.parse(localStorage.getItem('sovatoor_session'));
     if(s){state.user=s;updateNav();}
   }catch{}
 }
@@ -718,7 +718,7 @@ function doLogin(){
   // Admin check
   if(email===ADMIN_CREDS.email && password===ADMIN_CREDS.password){
     state.user = {...ADMIN_CREDS};
-    localStorage.setItem('crispybits_session',JSON.stringify(state.user));
+    localStorage.setItem('sovatoor_session',JSON.stringify(state.user));
     updateNav();
     showToast('Welcome back, Admin!');
     showPage('admin');
@@ -730,7 +730,7 @@ function doLogin(){
   const user = users.find(u=>u.email===email && u.password===password);
   if(user){
     state.user = user;
-    localStorage.setItem('crispybits_session',JSON.stringify(user));
+    localStorage.setItem('sovatoor_session',JSON.stringify(user));
     updateNav();
     showToast(`Welcome back, ${user.name.split(' ')[0]}! 🎉`);
     showPage('home');
@@ -752,9 +752,9 @@ function doRegister(){
   
   const user={name,email,phone,password,joined:new Date().toISOString()};
   users.push(user);
-  localStorage.setItem('crispybits_users',JSON.stringify(users));
+  localStorage.setItem('sovatoor_users',JSON.stringify(users));
   state.user=user;
-  localStorage.setItem('crispybits_session',JSON.stringify(user));
+  localStorage.setItem('sovatoor_session',JSON.stringify(user));
   updateNav();
   showToast(`Account created! Welcome, ${name.split(' ')[0]}! 🎉`);
   showPage('home');
@@ -762,7 +762,7 @@ function doRegister(){
 }
 function doLogout(){
   state.user=null;
-  localStorage.removeItem('crispybits_session');
+  localStorage.removeItem('sovatoor_session');
   updateNav();
   showToast('Logged out successfully.');
   showPage('home');
