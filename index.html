@@ -612,14 +612,40 @@ footer{background:var(--black);color:var(--white);padding:3rem;margin-top:4rem}
 <script>
 // ===== DATA =====
 const PRODUCTS = [
-  {id:1,name:"Classic Chin-Chin",emoji:"🧁",desc:"Crunchy, golden fried dough snacks seasoned with a hint of coconut. A Nigerian classic.",price:800,category:"Pastry",tag:"bestseller"},
-  {id:2,name:"Spicy Potato Chips",emoji:"🥔",desc:"Thick-cut, crispy potato chips with a fiery Suya spice blend. Addictive every bite.",price:650,category:"Chips",tag:"spicy"},
-  {id:3,name:"Honey Roasted Peanuts",emoji:"🥜",desc:"Premium peanuts slow-roasted with honey and sea salt. Packed with protein.",price:500,category:"Nuts",tag:"healthy"},
-  {id:4,name:"Crispy Beef Burger",emoji:"🍔",desc:"Juicy flame-grilled beef patty with fresh veggies on a toasted brioche bun.",price:2500,category:"Burger",tag:"hot"},
-  {id:5,name:"Coconut Chin-Chin",emoji:"🥥",desc:"A sweeter spin on the classic — enriched with fresh coconut milk and nutmeg.",price:900,category:"Pastry",tag:"new"},
-  {id:6,name:"BBQ Plantain Chips",emoji:"🍌",desc:"Unripe plantain sliced paper-thin and fried to a crisp with smoky BBQ seasoning.",price:700,category:"Chips",tag:""},
-  {id:7,name:"Cashew Nut Mix",emoji:"🌰",desc:"A premium blend of cashews, almonds and dried cranberries, lightly salted.",price:1200,category:"Nuts",tag:"premium"},
-  {id:8,name:"Chicken Burger",emoji:"🍗",desc:"Crispy fried chicken fillet, coleslaw, pickles and a house sauce on a soft bun.",price:2200,category:"Burger",tag:"popular"},
+  {
+    id:1,
+    name:"Classic Chin-Chin",
+    image:"/images/chin-chin.jpeg", 
+    desc:"Crunchy, golden fried dough snacks seasoned with a hint of coconut. A Nigerian classic.",
+    price:800,
+    category:"Pastry",
+    tag:"bestseller"
+  },
+  {
+    id:2,
+    name:"Spicy Chips",
+    image:"/images/chips.jpeg",
+    desc:"Thick-cut, crispy potato chips with a fiery Suya spice blend. Addictive every bite.",
+    price:650,
+    category:"Chips",
+    tag:"spicy"
+  },
+  {
+    id:3,
+    name:"Honey Roasted Peanuts",
+    image:"/images/peanut.jpeg",
+    desc:"Premium peanuts slow-roasted with honey and sea salt. Packed with protein.",price:500,
+    category:"Nuts",
+    tag:"healthy"
+  },
+  {
+    id:4,
+    name:"Crispy Chip",
+    image:"/images/chip-tray.jpeg",
+    desc:"Crispy fried potato chip with a hint of smoky flavor.",price:400,
+    category:"Chips",
+    tag:"hot"
+  },
 ];
 
 const ADMIN_CREDS = {email:"admin@sovatoor.ng",password:"admin123",name:"Admin",isAdmin:true};
@@ -783,7 +809,9 @@ function renderProducts(){
   const grid=document.getElementById('productsGrid');
   grid.innerHTML=PRODUCTS.map(p=>`
     <div class="product-card" onclick="openProductModal(${p.id})">
-      <div class="product-img">${p.emoji}</div>
+      <div class="product-img">
+        <img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius)"/>
+      </div>
       <div class="product-info">
         ${p.tag?`<span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--black);color:var(--white);padding:0.2rem 0.5rem;border-radius:20px;margin-bottom:0.4rem;display:inline-block">${p.tag}</span>`:''}
         <div class="product-name">${p.name}</div>
